@@ -1,40 +1,81 @@
 <% layout('/layouts/boilerplate') %>
-<body>
-    <h1>Create New Listing</h1>
 
-    <form method="POST" action="/listings">
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h2 class="display-6 mb-4">Create a New Listing</h2>
         
-        <div>
-            <label>Title:</label>
-            <input type="text" name="listing[title]" placeholder="Title" required>
-        </div>
+        <form method="POST" action="/listings" novalidate class="needs-validation">
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="listing[title]" placeholder="Give your place a catchy title" class="form-control" required>
+                <div class="invalid-feedback">Please enter a title.</div>
+            </div>
 
-        <div>
-            <label>Description:</label>
-            <textarea name="listing[description]" placeholder="Description" required></textarea>
-        </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" name="listing[description]" class="form-control" rows="4" placeholder="Describe the ambiance, amenities, and neighborhood..." required></textarea>
+                <div class="invalid-feedback">Please enter a short description.</div>
+            </div>
 
-        <div>
-            <label>Image URL:</label>
-            <input type="text" name="listing[image]" placeholder="Image URL" required>
-        </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image Link</label>
+                <input type="text" id="image" name="listing[image]" placeholder="Enter image URL/Link" class="form-control" required>
+            </div>
 
-        <div>
-            <label>Price:</label>
-            <input type="number" name="listing[price]" placeholder="Price" required>
-        </div>
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" id="price" name="listing[price]" placeholder="1200" class="form-control" required>
+                    </div>
+                </div>
 
-        <div>
-            <label>Location:</label>
-            <input type="text" name="listing[location]" placeholder="Location" required>
-        </div>
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" id="country" name="listing[country]" placeholder="India" class="form-control" required>
+                </div>
+            </div>
 
-        <div>
-            <label>Country:</label>
-            <input type="text" name="listing[country]" placeholder="Country" required>
-        </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" name="listing[location]" placeholder="Jaipur, Rajasthan" class="form-control" required>
+            </div>
 
-        <button type="submit">Submit</button>
-    </form>
-</body>
+            <div class="d-grid gap-2 d-md-block mt-4 mb-5">
+                <button type="submit" class="btn btn-dark add-btn px-5">Create Listing</button>
+            </div>
 
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Styling to match the Edit page */
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control::placeholder {
+        color: #ccc;
+        font-weight: 400;
+    }
+
+    .add-btn {
+        background-color: #fe424d !important;
+        border: none !important;
+        font-weight: 600;
+    }
+
+    .add-btn:hover {
+        background-color: #e33640 !important;
+    }
+
+    /* Soft focus effect */
+    .form-control:focus {
+        border-color: #fe424d;
+        box-shadow: 0 0 0 0.25rem rgba(254, 66, 77, 0.15);
+    }
+</style>

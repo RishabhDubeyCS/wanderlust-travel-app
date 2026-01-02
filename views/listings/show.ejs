@@ -1,53 +1,83 @@
 <% layout('/layouts/boilerplate') %>
-</head>
-<body>
 
-    <h1>Listing Details</h1>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3 class="mb-3"><%= listing.title %></h3>
+    </div>
 
-    <ul>
-        <li>
-            <strong>Title:</strong>
-            <%= listing.title %>
-        </li>
+    <div class="card col-8 offset-2 show-card">
+        <img 
+            src="<%= listing.image.url %>" 
+            class="card-img-top show-img" 
+            alt="listing_image"
+        >
+        
+        <div class="card-body">
+            <p class="card-text text-muted">Owned by <i>Anonymous</i></p>
+            
+            <p class="card-text">
+                <strong>Description:</strong> <br>
+                <%= listing.description %>
+            </p>
 
-        <li>
-            <strong>Description:</strong>
-            <%= listing.description %>
-        </li>
+            <p class="card-text">
+                <strong>Price:</strong> 
+                <span class="fs-5 text-success">
+                    ₹ <%= listing.price.toLocaleString("en-IN") %>
+                </span> / night
+            </p>
 
-        <li>
-            <strong>Price:</strong>
-            ₹ <%= new Intl.NumberFormat("en-IN").format(listing.price) %>
-        </li>
+            <p class="card-text">
+                <strong>Location:</strong> 
+                <i class="fa-solid fa-location-dot me-2"></i><%= listing.location %>, <%= listing.country %>
+            </p>
+        </div>
+    </div>
 
-        <li>
-            <strong>Location:</strong>
-            <%= listing.location %>
-        </li>
+    <div class="btns mb-5 col-8 offset-2 d-flex align-items-center">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn px-4 me-3">
+            Edit This Listing
+        </a>
 
-        <li>
-            <strong>Country:</strong>
-            <%= listing.country %>
-        </li>
-    </ul>
+        <form 
+            method="POST" 
+            action="/listings/<%= listing._id %>?_method=DELETE"
+            onsubmit="return confirm('Are you sure you want to delete this listing?');"
+        >
+            <button class="btn btn-outline-danger">Delete</button>
+        </form>
+    </div>
+</div>
 
-    <hr>
+<style>
+    /* Fancy Image Styling */
+    .show-img {
+        height: 40vh;
+        object-fit: cover;
+        border-radius: 1.5rem !important;
+    }
 
-    <!-- Navigation -->
-    <a href="/listings">⬅ Back to Listings</a>
-    |
-    <a href="/listings/<%= listing._id %>/edit">✏ Edit Listing</a>
+    .show-card {
+        border: none !important;
+    }
 
-    <br><br>
+    .card-body {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
-    <!-- Delete Form -->
-    <form 
-        action="/listings/<%= listing._id %>?_method=DELETE" 
-        method="POST"
-        onsubmit="return confirm('Are you sure you want to delete this listing?');"
-    >
-        <button type="submit">🗑 Delete Listing</button>
-    </form>
+    /* Button Styling */
+    .edit-btn {
+        background-color: #fe424d !important;
+        border: none !important;
+    }
 
-</body>
+    .edit-btn:hover {
+        background-color: #e33640 !important;
+    }
 
+    /* Text Polish */
+    .card-text b {
+        color: #333;
+    }
+</style>
