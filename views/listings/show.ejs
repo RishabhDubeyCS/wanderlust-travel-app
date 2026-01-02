@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= listing.title %> | Listing Details</title>
+</head>
+<body>
+
+    <h1>Listing Details</h1>
+
+    <ul>
+        <li>
+            <strong>Title:</strong>
+            <%= listing.title %>
+        </li>
+
+        <li>
+            <strong>Description:</strong>
+            <%= listing.description %>
+        </li>
+
+        <li>
+            <strong>Price:</strong>
+            ₹ <%= new Intl.NumberFormat("en-IN").format(listing.price) %>
+        </li>
+
+        <li>
+            <strong>Location:</strong>
+            <%= listing.location %>
+        </li>
+
+        <li>
+            <strong>Country:</strong>
+            <%= listing.country %>
+        </li>
+    </ul>
+
+    <hr>
+
+    <!-- Navigation -->
+    <a href="/listings">⬅ Back to Listings</a>
+    |
+    <a href="/listings/<%= listing._id %>/edit">✏ Edit Listing</a>
+
+    <br><br>
+
+    <!-- Delete Form -->
+    <form 
+        action="/listings/<%= listing._id %>?_method=DELETE" 
+        method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this listing?');"
+    >
+        <button type="submit">🗑 Delete Listing</button>
+    </form>
+
+</body>
+</html>
