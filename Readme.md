@@ -31,7 +31,7 @@ Users can view detailed listings including images, price, location, and country.
 
 ---
 
-## 📂 Folder Structure
+
 
 # npm i ejs Mate
 
